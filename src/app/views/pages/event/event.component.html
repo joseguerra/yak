@@ -1,0 +1,88 @@
+<div class="suelo">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div>
+                <h5 id="exampleModalLongTitle" class="modal-title">Copa Yak</h5>
+                <b id="exampleModalLongTitle" class="modal-title"> 
+                Ubicación: Merida, Venezuela<br>
+                Fecha: 28 de Marzo de 2021<br> 
+                Distancia: 4 kilómetros<br>
+                </b>
+                <p> 
+                La carrera Yak es una carrera de resistencia épica que se extiende por toda la cordillera Andina. Los recorridos se modifican cada año y la edición 2021 tendra secciones de superficies sin pavimentar y de grava.<br>
+                Los competidores también se enfrentarán con el ascenso de las montañas. Al igual que otras carreras de resistencia, este es un desafío totalmente individual y autosuficiente en donde el ciclista elige cuánto tiempo detenerse para descansar y debe ser responsable de obtener su propia comida y bebida. 
+                </p>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="Name">Nombre</label>
+                    <input type="text" id="Name" [(ngModel)]="event.name" name="Name" placeholder="" value="" required="" class="form-control ng-untouched ng-pristine ng-invalid">
+                    <div *ngIf="!event.name" class="error"> Nombre es requerido. </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="Name">Apellido</label>
+                    <input type="text" id="Lastname" [(ngModel)]="event.lastName" name="Lastname" placeholder="" value="" required="" class="form-control ng-untouched ng-pristine ng-invalid">
+                    <div *ngIf="!event.lastName" class="error"> Apellido es requerido. </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="Name">Edad</label>
+                    <input type="number" id="age" name="age" [(ngModel)]="event.age" placeholder="" value="" required="" class="form-control ng-untouched ng-pristine ng-invalid">
+                    <div *ngIf="!event.age" class="error"> Edad es requerida. </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="Genero">Genero</label>
+                    <select id="Genero" required="" name="Genero" [(ngModel)]="event.genero" class="custom-select d-block w-100 ng-untouched ng-pristine ng-invalid">
+                        <option value="">Escoge...</option>
+                        <option >Masculino</option>
+                        <option >Fenemenino</option>
+                    </select>
+                    <div *ngIf="!event.genero" class="error"> Genero es requerido. </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="Name">Telefono</label>
+                    <input type="text" id="phone" name="phone" [(ngModel)]="event.phone" placeholder="" value="" required="" class="form-control ng-untouched ng-pristine ng-invalid">
+                    <div *ngIf="!event.phone" class="error ng-star-inserted"> Telefono es requerido. </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="Name">Email</label>
+                    <input type="text" id="email" name="email" placeholder="" [(ngModel)]="event.email" value="" required="" class="form-control ng-untouched ng-pristine ng-invalid">
+                    <div *ngIf="!event.email" class="error ng-star-inserted"> Email es requerido. </div>
+                </div>
+                </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <h5 id="exampleModalLongTitle" class="modal-title">
+                                Precio total: 2$ 
+                            </h5>
+                        </div>
+                        <div class="col-md-6 mb-3 ng-star-inserted">
+
+                            <button *ngIf="!event.name || !event.lastName || !event.age || !event.genero || !event.phone || !event.email" class="btn btn-primary btn-lg btn-block"
+                             [disabled]="!event.name || !event.lastName || !event.age || !event.genero || !event.phone || !event.email">
+                                <i class="fa fa-whatsapp">
+
+                                </i> 
+                                Inscribirme 
+                            </button>
+
+                            <a class="btn btn-primary btn-lg btn-block"
+                            *ngIf="!(!event.name || !event.lastName || !event.age || !event.genero || !event.phone || !event.email)"
+                            target="_blank"
+                            (click)="addRider()"
+                            [href]='"https://wa.me/+584247117137?text=Hola, me gustaría inscribirme en la carrera yak%0A======== Corredor =======%0A"+event.name+" "+event.lastName+"%0AEdad:"+event.age+",%20"+event.genero+"%0A"+event.phone+",%20"+"%0A"+event.email'
+                          >
+                                <i class="fa fa-whatsapp">
+
+                                </i> 
+                                Inscribirme 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+        </div>

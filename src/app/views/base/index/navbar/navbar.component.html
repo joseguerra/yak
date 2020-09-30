@@ -25,6 +25,45 @@
         />
       </span>
     </div>
+    <div class="hide end margin-top3">
+        <a
+        data-target="#basicExampleNav"
+        dropdownToggle
+        type="button"
+        class="nav-link dropdown-toggle waves-light"
+      >
+        <i class="fa fa-usd"> </i>
+        <img
+          *ngIf="productService.getValueCurrency() !== 1"
+          class="padding"
+          src="../../../../../assets/banner_img/197575.svg"
+          width="20px"
+          height="20px" />
+        <img
+          *ngIf="productService.getValueCurrency() === 1"
+          class="padding"
+          src="../../../../../assets/banner_img/197580.svg"
+          width="20px"
+          height="20px" />
+        <span class="caret"></span
+      ></a>
+      <div
+        *dropdownMenu
+        class="dropdown-menu dropdown dropdown-primary"
+        role="menu"
+      >
+        <a
+          data-target="#basicExampleNav"
+          class="dropdown-item waves-light"
+          href="javascript:;;"
+          (click)="setLang(lang.language)"
+          *ngFor="let lang of languageList"
+        >
+          <img [src]="lang.image" alt="" width="30px" height="30px" />
+          {{ lang.language }}</a
+        >
+      </div>
+    </div>
     <div class="hide end">
       <i
         class="fa fa-shopping-cart top"
@@ -36,6 +75,18 @@
       </i>
     </div>
   </div>
+  <div class="input-group-prepend all-width hide">
+      <span class="input-group-text" id="basic-addon1"(click)="onSearch()"
+        ><i class="fa fa-search mr-1"></i
+      ></span>
+      <input
+        type="text"
+        [(ngModel)]="search"
+        class="form-control"
+        aria-label="Username"
+        aria-describedby="basic-addon1"
+      />
+    </div>
 
   <div class="collapse navbar-collapse" id="basicExampleNav">
     <!-- Links -->
@@ -64,6 +115,7 @@
             type="text"
             class="form-control"
             [(ngModel)]="search"
+            (keyup.enter)="onSearch()"
             aria-label="Username"
             aria-describedby="basic-addon1"
           />
@@ -111,6 +163,27 @@
               >PRODUCTOS</a
             >
           </li>
+
+          <li *ngIf="authService.isAdmin$ | async" class="nav-item hide">
+              <a
+                data-target="#basicExampleNav"
+                data-toggle="collapse"
+                class="nav-link hidden-xs"
+                routerLinkActive="class-name"
+                [routerLink]="['/events']"
+                >EVENTOS</a
+              >
+            </li>
+            <li *ngIf="authService.isAdmin$ | async" class="nav-item hide2">
+              <a
+                data-target="#basicExampleNav"
+                class="nav-link hidden-xs"
+                routerLinkActive="class-name"
+                [routerLink]="['/events']"
+                >EVENTOS</a
+              >
+            </li>
+
           <li class="nav-item hide">
             <a
               data-target="#basicExampleNav"
@@ -195,19 +268,7 @@
     </ul>
 
     <ul class="navbar-nav mr-auto hide">
-      <li class="nav-item">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1"
-            ><i class="fa fa-search mr-1"></i
-          ></span>
-          <input
-            type="text"
-            class="form-control"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-          />
-        </div>
-      </li>
+
 
       <li class="nav-item hide">
         <a
@@ -251,6 +312,27 @@
           >PRODUCTOS</a
         >
       </li>
+
+      <li *ngIf="authService.isAdmin$ | async" class="nav-item hide">
+          <a
+            data-target="#basicExampleNav"
+            data-toggle="collapse"
+            class="nav-link hidden-xs"
+            routerLinkActive="class-name"
+            [routerLink]="['/events']"
+            >EVENTOS</a
+          >
+        </li>
+        <li *ngIf="authService.isAdmin$ | async" class="nav-item hide2">
+          <a
+            data-target="#basicExampleNav"
+            class="nav-link hidden-xs"
+            routerLinkActive="class-name"
+            [routerLink]="['/events']"
+            >EVENTOS</a
+          >
+        </li>
+
       <li class="nav-item hide">
         <a
           data-target="#basicExampleNav"

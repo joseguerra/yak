@@ -1,6 +1,10 @@
 @import "../../../../../assets/theme/colors";
 @import "../../../../../assets/theme/functions";
 
+.all-width{
+  width: 100%;
+}
+
 .navbar {
   top: 0;
   background: white;
@@ -83,8 +87,12 @@
   .nav-container {
     display: grid;
     width: 100%;
-    grid-template-columns: 15% 15% 70%;
+    grid-template-columns: 15% 15% 60% 10%;
   }
+}
+
+.margin-top3{
+  margin-top: 8px;
 }
 
 .class-name {

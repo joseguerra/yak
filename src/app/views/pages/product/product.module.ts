@@ -23,12 +23,14 @@ import { CartProductsComponent } from "./cart-products/cart-products.component";
 import { CartCalculatorComponent } from "./cart-calculator/cart-calculator.component";
 import { NgxGalleryModule } from "ngx-gallery-9";
 import { NgxDropzoneModule } from "ngx-dropzone";
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   imports: [
     CommonModule,
     NgxGalleryModule,
     NgxDropzoneModule,
+    AngularEditorModule,
     RouterModule.forChild(ProductRoutes),
     SharedModule,
     CheckoutModule,

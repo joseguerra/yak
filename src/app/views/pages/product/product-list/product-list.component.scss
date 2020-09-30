@@ -11,6 +11,28 @@
   }
 }
 
+.centerloading {
+  padding-left: 40%;
+}
+
+@media (min-width: 1000px){
+  .imagen{
+    position: absolute;
+    left: 0;
+    font-size: 18px;
+    width: 85px!important;
+  }
+}
+
+@media (max-width: 999px){
+  .imagen{
+    position: relative;
+    top: -200px;
+    font-size: 18px;
+    width: 85px!important;
+  }
+}
+
 .section .section-heading {
   margin-top: 2rem;
   margin-bottom: 4rem;

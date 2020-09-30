@@ -68,6 +68,7 @@
                       width="360px"
                       height="640px"
                     />
+                    <img *ngIf="(productService.getValueCurrency() === 1 && !product.enable_ve) || productService.getValueCurrency() !== 1 && !product.enable_co" src="./assets/banner_img/agotado.jpg" class="imagen ng-star-inserted">
                   </a>
                   <!--/.Card image-->
                   <!--Card content-->
@@ -110,7 +111,7 @@
                           <i class="fa fa-heart"></i>
                         </a>
                         <a
-                          *ngIf="product.productQuantity"
+                        *ngIf="((productService.getValueCurrency() === 1 && product.enable_ve) || productService.getValueCurrency() !== 1 && product.enable_co) && product.productQuantity"
                           placement="top"
                           mdbTooltip="Add to Cart"
                           container="body"
@@ -118,6 +119,7 @@
                         >
                           <i class="fa fa-shopping-cart"></i>
                         </a>
+                        <!--
                         <a
                           placement="top"
                           mdbTooltip="Remove Product"
@@ -126,7 +128,7 @@
                           (click)="removeProduct(product.$key)"
                         >
                           <i class="fa fa-trash"></i>
-                        </a>
+                        </a>-->
                         <a
                           placement="top"
                           mdbTooltip="Edit Product"
@@ -148,7 +150,7 @@
             </div>
           </div>
         </div>
-        <div class="container" *ngIf="productList.length === 0">
+        <div class="container" *ngIf="productList.length === 0 && !loading">
           <app-no-products-found
             [title]="messageTitle"
             [description]="messageDescription"
@@ -240,14 +242,11 @@
               >Descripcion
               <span class="text-muted">(Optional)</span>
             </label>
-            <textarea
-              type="text"
-              class="form-control"
-              id="productDescription"
-              placeholder=""
-              name="productDescription"
-              [(ngModel)]="product.productDescription"
-            ></textarea>
+            <angular-editor
+            id="productDescription"
+            placeholder=""
+            name="productDescription" [(ngModel)]="product.productDescription">
+            </angular-editor>
             <div *ngIf="!product.productDescription" [ngClass]="'error'">
               Descripcion es requerido.
             </div>
@@ -289,22 +288,22 @@
           </div>
 
           <div class="mb-3">
-            <label for="productSeller">Proveedor</label>
+            <label for="brand">Proveedor</label>
             <input
               type="text"
               class="form-control"
-              id="productSeller"
-              [(ngModel)]="product.productSeller"
-              name="productSeller"
+              id="brand"
+              [(ngModel)]="product.brand"
+              name="brand"
               placeholder="Product Seller"
               required
             />
-            <div *ngIf="!product.productSeller" [ngClass]="'error'">
+            <div *ngIf="!product.brand" [ngClass]="'error'">
               Proveedor es requerido.
             </div>
           </div>
           <div class="mb-3">
-            <label for="productSeller">SKU</label>
+            <label for="SKU">SKU</label>
             <input
               type="text"
               class="form-control"
@@ -320,26 +319,31 @@
           </div>
 
           <div class="mb-3">
-            <div
+              <label for="images">Imagenes</label>
+              <div *ngIf="loadingImage" class="centerloading">
+                  <img  src="./assets/img/loader.svg" width="64" height="64" />
+                </div>
+            <ngx-dropzone
+            *ngIf="!loadingImage"
               class="custom-dropzone"
-              ngx-dropzone
               [accept]="'image/*'"
               (change)="onSelect($event)"
             >
-              <ngx-dropzone-label>
+
+              <ngx-dropzone-label >
                 <div>
                   <h2>Agregue Imagenes</h2>
                 </div>
               </ngx-dropzone-label>
               <ngx-dropzone-image-preview
                 ngProjectAs="ngx-dropzone-preview"
-                *ngFor="let f of files"
+                *ngFor="let f of files; let i = index"
                 [file]="f"
                 [removable]="true"
-                (removed)="onRemove(f)"
+                (removed)="onRemove(f, i)"
               >
               </ngx-dropzone-image-preview>
-            </div>
+            </ngx-dropzone>
           </div>
 
           <div class="mb-3">
@@ -347,13 +351,25 @@
               <input
                 type="checkbox"
                 class="custom-control-input"
-                id="enable"
-                name="enable"
-                [(ngModel)]="product.enable"
+                id="enable_co"
+                name="enable_co"
+                [(ngModel)]="product.enable_co"
               />
-              <label class="custom-control-label" for="enable">Activo</label>
+              <label class="custom-control-label" for="enable_co">Activo Colombia</label>
             </div>
           </div>
+          <div class="mb-3">
+              <div class="custom-control custom-switch">
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  id="enable_ve"
+                  name="enable_ve"
+                  [(ngModel)]="product.enable_ve"
+                />
+                <label class="custom-control-label" for="enable_ve">Activo Venezuela</label>
+              </div>
+            </div>
           <div class="mb-3">
             <div class="custom-control custom-switch">
               <input
@@ -373,7 +389,7 @@
             *ngIf="!edit"
             (click)="createProduct(addProductForm)"
             [disabled]="
-              !product.productSeller ||
+              !product.brand ||
               !product.productQuantity ||
               !product.productPrice ||
               !product.productDescription ||
@@ -390,13 +406,15 @@
             *ngIf="edit"
             (click)="editProduct(product)"
             [disabled]="
-              !product.productSeller ||
+              !product.brand ||
               !product.productQuantity ||
               !product.productPrice ||
               !product.productDescription ||
               !product.productCategory ||
               !product.productName ||
-              !product.productSKU
+              !product.productSKU ||
+              !images.length || 
+              loadingImage
             "
             class="btn btn-primary btn-lg btn-block"
             type="submit"

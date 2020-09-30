@@ -6,7 +6,7 @@ import { ToastrService } from "src/app/shared/services/toastr.service";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { NgxDropzoneComponent } from "ngx-dropzone";
-import { async } from "rxjs";
+import { async, Observable, Observer } from "rxjs";
 declare var $: any;
 declare var require: any;
 declare var toastr: any;
@@ -20,9 +20,11 @@ const moment = require("moment");
 export class ProductListComponent implements OnInit {
   @ViewChild(NgxDropzoneComponent) componentRef: NgxDropzoneComponent;
   dropzone: any;
+  base64Image: any;
   product: Product = new Product();
   productList: Product[] = [];
   loading = false;
+  loadingImage = false;
   edit = true;
   files: File[] = [];
   brands = [
@@ -60,9 +62,8 @@ export class ProductListComponent implements OnInit {
   }
 
   onSelect(event) {
-    console.log(event);
+    this.loadingImage = true;
     this.files.push(...event.addedFiles);
-    console.log(this.files);
     this.productService
       .firestoreUploadImage(
         event.addedFiles[0],
@@ -75,13 +76,51 @@ export class ProductListComponent implements OnInit {
         referencia.getDownloadURL().subscribe((data) => {
           console.log(data);
           this.images.push(data);
+          console.log(this.images);
+          this.loadingImage = false;
         });
       });
   }
 
-  onRemove(event) {
-    console.log(event);
+  onRemove(event, i) {
     this.files.splice(this.files.indexOf(event), 1);
+    this.images.splice(i,1);
+    console.log(this.images);
+  }
+
+  openEdit(product: Product) {
+    this.files = [];
+    this.images = [];
+    this.edit = true;
+    this.loadingImage = true;
+    this.product = product;
+    for (let i = 0; i < Object.values(this.product.images).length; i++) {
+      this.images.push(this.product.images[i]);
+      this.getBase64ImageFromURL(this.product.images[i]).subscribe(base64data => {
+        fetch('data:image/jpg;base64,' + base64data)
+        .then(res => res.blob())
+        .then(blob => {
+          const file = new File([blob], "File name",{ type: "image/png" })
+          this.files.push(file);
+          this.loadingImage = false;
+        })
+      });
+    }
+  }
+
+  editProduct(product) {
+    let key: string = JSON.stringify(this.product.$key);
+    key = key.replace(/["']/g, "");
+    delete this.product.$key;
+    console.log(this.images);
+    product.images = this.images;
+    this.productService
+      .editProduct(key, product)
+      .snapshotChanges()
+      .subscribe((products) => {
+        this.getAllProducts();
+        $("#exampleModalLong").modal("hide");
+      });
   }
 
   getAllProducts() {
@@ -100,6 +139,7 @@ export class ProductListComponent implements OnInit {
           this.productList.push(y);
         });
         console.log(this.productList);
+
       },
       (err) => {
         this.toastrService.error("Error while fetching Products", err);
@@ -127,7 +167,7 @@ export class ProductListComponent implements OnInit {
 
         this.productList = products.filter(
           (state) =>
-            state.productName.toLowerCase().indexOf(id.toLowerCase()) != -1
+            state.productName.toLowerCase().indexOf(id.toLowerCase()) != -1 ||  state.productDescription.toLowerCase().indexOf(id.toLowerCase()) != -1
         );
 
         console.log(this.productList);
@@ -142,12 +182,34 @@ export class ProductListComponent implements OnInit {
     this.productService.deleteProduct(key);
   }
 
-  openEdit(product: Product) {
-    this.edit = true;
-    this.product = product;
-    console.log(this.product);
+  getBase64ImageFromURL(url: string) {
+    return Observable.create((observer: Observer<string>) => {
+      let img = new Image();
+      img.crossOrigin = 'Anonymous';
+      img.src = url;  img.src = url;
+      if (!img.complete) {
+        img.onload = () => {
+          observer.next(this.getBase64Image(img));
+          observer.complete();
+        };
+        img.onerror = (err) => {
+          observer.error(err);
+        };
+      } else {
+        observer.next(this.getBase64Image(img));
+        observer.complete();
+      }
+    });
+  }
 
-    console.log(this.files);
+  getBase64Image(img: HTMLImageElement) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    var dataURL = canvas.toDataURL("image/png");
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
   }
 
   addFavourite(product: Product) {
@@ -179,19 +241,5 @@ export class ProductListComponent implements OnInit {
       $("#exampleModalLong").modal("hide");
       toastr.success("Producto Agregado", "Producto Agregado");
     });
-  }
-
-  editProduct(product) {
-    let key: string = JSON.stringify(this.product.$key);
-    key = key.replace(/["']/g, "");
-    delete this.product.$key;
-
-    this.productService
-      .editProduct(key, product)
-      .snapshotChanges()
-      .subscribe((products) => {
-        this.getAllProducts();
-        $("#exampleModalLong").modal("hide");
-      });
   }
 }

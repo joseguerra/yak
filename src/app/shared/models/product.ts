@@ -11,9 +11,10 @@ export class Product {
   productQuantity: number;
   ratings: number;
   favourite: boolean;
-  productSeller: string;
+  brand: string;
   productSKU: string;
-  enable: boolean;
+  enable_co: boolean;
+  enable_ve: boolean;
   images: [];
   bestProducts: boolean;
 }

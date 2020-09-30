@@ -12,6 +12,7 @@ import { SharedModule } from "./shared/shared.module";
 import { TranslateService } from "./shared/services/translate.service";
 import { ProductModule } from "./views/pages/product/product.module";
 import { UserModule } from "./views/pages/user/user.module";
+import { EventModule } from "./views/pages/event/event.module";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 
@@ -28,6 +29,7 @@ export function setupTranslateFactory(service: TranslateService) {
     IndexModule,
     ProductModule,
     UserModule,
+    EventModule,
     SharedModule,
     ServiceWorkerModule.register("./ngsw-worker.js", {
       enabled: environment.production,

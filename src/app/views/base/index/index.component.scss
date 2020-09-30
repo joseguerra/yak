@@ -5,3 +5,31 @@
 .center {
   text-align: center;
 }
+
+.has-text-align-center{
+  text-align: center;
+    color: #030;
+}
+
+.pasos-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+.wpsm_service-icon{
+
+  background: #fff!important;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%!important;
+  text-align: center!important;
+  float: left!important;
+
+  i{
+    font-size: 30px!important;
+    color: #ffa000!important;
+    line-height: 70px;
+  }
+
+}

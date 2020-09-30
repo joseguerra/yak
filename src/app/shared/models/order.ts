@@ -19,5 +19,5 @@ export class Product {
   cartQuantity: number;
   ratings: number;
   favourite: boolean;
-  productSeller: string;
+  brand: string;
 }

@@ -22,7 +22,7 @@ declare var toastr: any;
           >
             <i class="fa fa-whatsapp"></i>
             <span class="padding-left">
-              Bienvenido(a) a Yak Brake! Contactanos.
+              Bienvenido(a) a Yak Brake! Contáctanos.
             </span>
           </a>
           <a
@@ -37,7 +37,7 @@ declare var toastr: any;
           >
             <i class="fa fa-whatsapp"></i>
             <span class="padding-left">
-              Bienvenido(a) a Yak Brake! Contactanos.
+              Bienvenido(a) a Yak Brake! Contáctanos.
             </span>
           </a>
         </router-outlet>
@@ -50,6 +50,7 @@ declare var toastr: any;
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true"
+        class="modal fade top"
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">

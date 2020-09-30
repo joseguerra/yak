@@ -26,7 +26,7 @@ export class ResultComponent implements OnInit {
   userDetail: UserDetail;
   order: Order = new Order();
   load = false;
-
+  pedido = '';
   constructor(
     public orderService: OrderService,
     private formBuilder: FormBuilder,
@@ -41,10 +41,11 @@ export class ResultComponent implements OnInit {
     this.products.forEach((product) => {
       for (let i = 0; i < product.cartQuantity; i++) {
         this.totalPrice += product.productPrice;
+        this.pedido+= product.productName + ' - ' + product.cartQuantity + 'set(s) = ' + product.productPrice * this.productService.getValueCurrency() +'$%0A'
       }
     });
 
-    console.log(this.registerForm);
+    console.log(this.pedido);
     this.date = Date.now();
   }
 

@@ -31,6 +31,13 @@ const routes: Routes = [
             (m) => m.TaskBoardModule
           ),
       },
+      {
+        path: "events",
+        loadChildren: () =>
+          import("./views/pages/event/event.module").then(
+            (m) => m.EventModule
+          ),
+      },
     ],
   },
   { path: "no-access", component: NoAccessComponent },

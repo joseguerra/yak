@@ -36,12 +36,12 @@
                 <h6 class="my-0">Vendedor</h6>
               </div>
               <span class="text-muted" style="color: crimson !important;">{{
-                product.productSeller
+                product.brand
               }}</span>
             </li>
           </ul>
 
-          <div *ngIf="!loading" class="content">
+          <div *ngIf="((productService.getValueCurrency() === 1 && product.enable_ve) || (productService.getValueCurrency() !== 1 && product.enable_co)) && !loading" class="content">
             <label>
               Cantidad:
             </label>
@@ -70,8 +70,10 @@
             </div>
           </div>
 
+          <h1 *ngIf="(productService.getValueCurrency() === 1 && !product.enable_ve) || (productService.getValueCurrency() !== 1 && !product.enable_co)" style="color: red;"> Agotado</h1>
+
           <button
-            *ngIf="!loading && product.productQuantity"
+            *ngIf="((productService.getValueCurrency() === 1 && product.enable_ve) || (productService.getValueCurrency() !== 1 && product.enable_co)) && !loading && product.productQuantity"
             class="btn btn-primary"
             (click)="addToCart(product)"
           >
