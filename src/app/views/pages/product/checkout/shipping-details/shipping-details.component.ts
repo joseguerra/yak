@@ -6,7 +6,6 @@ import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ProductService } from "../../../../../shared/services/product.service";
-import { map } from "rxjs/operators";
 @Component({
   selector: "app-shipping-details",
   templateUrl: "./shipping-details.component.html",

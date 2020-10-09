@@ -30,6 +30,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    window.scrollTo(0,0);
     this.galleryOptions = [
       {
         imagePercent: 80,

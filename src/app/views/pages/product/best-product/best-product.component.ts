@@ -3,7 +3,6 @@ import { Component, OnInit } from "@angular/core";
 import { Product } from "src/app/shared/models/product";
 import { ProductService } from "src/app/shared/services/product.service";
 import { ToastrService } from "src/app/shared/services/toastr.service";
-import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-best-product",

@@ -1,12 +1,11 @@
 import { ProductService } from "../../../../../shared/services/product.service";
 import { Product } from "../../../../../shared/models/product";
 import { BillingService } from "../../../../../shared/services/billing.service";
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { User, UserDetail } from "../../../../../shared/models/user";
 import { AuthService } from "../../../../../shared/services/auth.service";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
-import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-billing-details",

@@ -1,5 +1,5 @@
 <!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class=" container navbar navbar-expand-lg navbar-light">
   <!-- Collapsible content -->
   <!-- Collapse button -->
 
@@ -82,6 +82,7 @@
       <input
         type="text"
         [(ngModel)]="search"
+        (keyup.enter)="onSearch()"
         class="form-control"
         aria-label="Username"
         aria-describedby="basic-addon1"
@@ -102,7 +103,7 @@
     </ul>
     <ul class="navbar-nav mr-auto hide2">
       <div class="flex-column ml-lg-0 ml-3">
-        <ul class="navbar-nav margin-top">
+        <ul  class="navbar-nav margin-top">
           <div class="input-group-prepend">
             <span
               class="input-group-text cursor"
@@ -490,33 +491,6 @@
         >
       </li>
 
-      <li class="nav-item dropdown hide" dropdown>
-        <a
-          data-target="#basicExampleNav"
-          dropdownToggle
-          type="button"
-          class="nav-link dropdown-toggle waves-light"
-        >
-          <i class="fa fa-usd"> </i><span class="caret"></span
-        ></a>
-        <div
-          *dropdownMenu
-          class="dropdown-menu dropdown dropdown-primary"
-          role="menu"
-        >
-          <a
-            data-target="#basicExampleNav"
-            data-toggle="collapse"
-            class="dropdown-item waves-light"
-            href="javascript:;;"
-            (click)="setLang(lang.language)"
-            *ngFor="let lang of languageList"
-          >
-            <i class="fa fa-flag-o mr-2"></i>
-            {{ lang.language }}</a
-          >
-        </div>
-      </li>
       <li class="nav-item dropdown hide2" dropdown>
         <a
           data-target="#basicExampleNav"

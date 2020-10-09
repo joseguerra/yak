@@ -1,5 +1,5 @@
 @media (min-width: 600px) {
-  .container {
+  .container2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 5px;
@@ -7,7 +7,7 @@
 }
 
 @media (max-width: 600px) {
-  .container {
+  .container2 {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-areas: "b" "a";

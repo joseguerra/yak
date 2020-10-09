@@ -2,11 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { ProductService } from "./shared/services/product.service";
 import { fadeAnimation } from "./shared/animations/fadeIntRoute";
 declare var $: any;
-declare var toastr: any;
 @Component({
   selector: "app-root",
   template: `
-    <div class="container">
+    <div>
       <app-navbar> </app-navbar>
       <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
         <router-outlet #o="outlet">
@@ -14,7 +13,7 @@ declare var toastr: any;
             *ngIf="productService.getValueCurrency() === 1"
             class="qlwapp-toggle"
             data-action="open"
-            data-phone="+573157005569"
+            data-phone="+584247117137"
             data-message="Buen día, podrías darme información sobre tus productos 
         ?"
             href="https://wa.me/+584247117137?text=Buen%20día,%20podrías%20darme%20información%20sobre%20tus%20productos%20?"
@@ -44,27 +43,23 @@ declare var toastr: any;
       </main>
 
       <div
-        class="modal fade"
+        class="modal fade top"
         id="exampleModalCenter"
         tabindex="-1"
         role="dialog"
-        aria-labelledby="exampleModalCenterTitle"
+        mdbModal 
+        #frame="mdbModal"
+        aria-labelledby="myModalLabel"
         aria-hidden="true"
         class="modal fade top"
       >
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-notify modal-success" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">
-                Bienvenido a Yak Brake
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
+              <p class="heading lead">Bienvenido a Yak Brake</p>
+      
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
               </button>
             </div>
             <div class="modal-body">
@@ -72,13 +67,15 @@ declare var toastr: any;
               derecha
             </div>
             <div class="modal-footer">
-              <button
+              <a
                 type="button"
+                mdbBtn 
+                color="success"
                 class="btn btn-primary"
                 data-dismiss="modal"
               >
                 OK
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -95,19 +92,7 @@ export class AppComponent implements OnInit {
   constructor(public productService: ProductService) {}
 
   ngOnInit() {
-    toastr.options = {
-      closeButton: true,
-      debug: false,
-      onclick: null,
-      showDuration: "300",
-      hideDuration: "10000",
-      timeOut: "300000",
-      extendedTimeOut: "1000",
-    };
-
-    console.log(this.productService.getValueCurrency());
     if (!this.productService.getValueCurrency()) {
-      console.log("entre");
       $("#exampleModalCenter").modal("show");
       this.productService.addToValue(1);
     }
