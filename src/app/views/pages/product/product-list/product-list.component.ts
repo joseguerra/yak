@@ -223,6 +223,7 @@ export class ProductListComponent implements OnInit {
   openCreate() {
     this.edit = false;
     this.product = new Product();
+    this.product.bestProducts = false;
   }
 
   createProduct(productForm: NgForm) {

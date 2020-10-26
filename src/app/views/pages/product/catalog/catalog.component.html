@@ -1,8 +1,8 @@
 <br />
 
-<app-card-loader [loop]="4" [height]="800" *ngIf="loading"></app-card-loader>
+<app-card-loader class="suelo" [loop]="4" [height]="800" *ngIf="loading"></app-card-loader>
 
-<div class="container" *ngIf="!loading">
+<div class="container suelo" *ngIf="!loading">
   <div class="row" *ngIf="authService.isAdmin$ | async">
     <div class="col-sm">
       <div class="float-right">

@@ -49,12 +49,11 @@
             *ngFor="
               let product of productList
                 | filterByBrand: selectedBrand
-                | paginate: { itemsPerPage: 20, currentPage: page }
+                | paginate: { itemsPerPage: 25, currentPage: page }
             "
           >
             <div
               class="item"
-              *ngIf="product.enable || (authService.isAdmin$ | async)"
             >
               <div class="mb-r">
                 <!--Card-->

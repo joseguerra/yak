@@ -11,6 +11,11 @@
   }
 }
 
+.modal{
+  overflow-x: hidden;
+  overflow-y: auto !important;
+}
+
 .centerloading {
   padding-left: 40%;
 }
