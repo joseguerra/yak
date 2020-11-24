@@ -20,6 +20,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: "blog",
+        loadChildren: () =>
+          import("./views/pages/blog/blog.module").then(
+            (m) => m.BlogModule
+          ),
+      },
+      {
         path: "users",
         loadChildren: () =>
           import("./views/pages/user/user.module").then((m) => m.UserModule),

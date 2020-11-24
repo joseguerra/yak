@@ -1,0 +1,21 @@
+<div class="center suelo" *ngIf="loading">
+  <img  src="./assets/img/loader.svg" width="64" height="64" />
+</div>
+<div class="container suelo" *ngIf="!loading">
+  <div class="row">
+    <div class="col-sm-12">
+      <a [routerLink]="['/blog/all-blogs']" class="back">
+          <i class="fa fa-arrow-left mr-1"></i
+            >Volver
+          </a>
+
+      <div class="product-detail">
+              <div class="margin-top" [innerHTML]="product.blogDescription"></div>
+
+      </div>
+    </div>
+  </div>
+  <br />
+  <br />
+  <br />
+</div>

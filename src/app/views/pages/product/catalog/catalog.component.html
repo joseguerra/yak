@@ -1,8 +1,6 @@
 <br />
-
-<app-card-loader class="suelo" [loop]="4" [height]="800" *ngIf="loading"></app-card-loader>
-
-<div class="container suelo" *ngIf="!loading">
+<div class="container suelo">
+ 
   <div class="row" *ngIf="authService.isAdmin$ | async">
     <div class="col-sm">
       <div class="float-right">
@@ -17,34 +15,51 @@
       </div>
     </div>
   </div>
-  <div
-    class="item row"
-    style="padding: 20px;"
-    *ngFor="let product of productList; let i = index"
-  >
-    <div class="mb-r">
-      <!--Card-->
 
-      <!--Card image-->
-      <a [routerLink]="['/products/product', product.productUrl]">
-        <img
-          [src]="product.productImageUrl"
-          class="img-fluid"
-          alt=""
-          width="360px"
-          height="640px"
-        />
-        <a>
-          <div class="mask waves-effect waves-light" mdbRippleRadius></div>
-        </a>
-      </a>
-      <!--/.Card image-->
 
-      <!--/.Card content-->
 
-      <!--/.Card-->
-    </div>
-    <!--/First column-->
-  </div>
+            <div class="row">
+                <div class="container">
+                    <app-card-loader
+  [loop]="4"
+  [height]="800"
+  *ngIf="loading"
+></app-card-loader>
+                    <div class="row" *ngIf="!loading">
+                <div
+                class="col-sm-3 mb-2"
+                *ngFor="let product of productList; let i = index"
+              >
+                <div
+                class="item"
+              >
+                <div class="mb-r">
+                  <!--Card-->
+            
+                  <!--Card image-->
+                  <a [routerLink]="['/products/product', product.productUrl]">
+                    <img
+                      [src]="product.productImageUrl"
+                      class="img-fluid"
+                      alt=""
+                      width="360px"
+                      height="640px"
+                    />
+                    <a>
+                      <div class="mask waves-effect waves-light" mdbRippleRadius></div>
+                    </a>
+                  </a>
+                  <!--/.Card image-->
+            
+                  <!--/.Card content-->
+            
+                  <!--/.Card-->
+                </div>
+                </div>
+                <!--/First column-->
+              </div>
+            </div>
+
+        </div>
+
 </div>
-<app-add-catalog></app-add-catalog>

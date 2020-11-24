@@ -15,6 +15,7 @@ import { PageNotFoundComponent } from "./components/page-not-found/page-not-foun
 import { FilterByBrandPipe } from "./pipes/filterByBrand.pipe";
 import { ProductService } from "./services/product.service";
 import { CatalogService } from "./services/catalog.service";
+import { BlogService } from "./services/blog.service";
 import { OrderService } from "./services/order.service";
 import { EventService } from "./services/event.service";
 import { AdminGaurd } from "./guards/admin-gaurd";
@@ -83,6 +84,7 @@ import { FireBaseConfig } from "./../../environments/firebase.config";
     AdminGaurd,
     ProductService,
     CatalogService,
+    BlogService,
     OrderService,
     EventService,
     UserService,

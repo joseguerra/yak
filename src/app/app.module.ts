@@ -11,6 +11,7 @@ import { IndexModule } from "./views/base/index/index.module";
 import { SharedModule } from "./shared/shared.module";
 import { TranslateService } from "./shared/services/translate.service";
 import { ProductModule } from "./views/pages/product/product.module";
+import { BlogModule } from "./views/pages/blog/blog.module";
 import { UserModule } from "./views/pages/user/user.module";
 import { EventModule } from "./views/pages/event/event.module";
 import { ServiceWorkerModule } from "@angular/service-worker";
@@ -28,6 +29,7 @@ export function setupTranslateFactory(service: TranslateService) {
     AppRoutingModule,
     IndexModule,
     ProductModule,
+    BlogModule,
     UserModule,
     EventModule,
     SharedModule,

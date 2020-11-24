@@ -168,8 +168,8 @@ export class ProductService {
     }
     console.log(a);
     this.toastrService.wait(
-      "Adding Product to Cart",
-      "Product Adding to the cart"
+      "Perfecto",
+      "Producto agregado al carrito"
     );
     setTimeout(() => {
       localStorage.setItem("avct_item", JSON.stringify(a));
