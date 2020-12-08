@@ -52,15 +52,27 @@
               >
             </div>
           </div>
-          <span class="rigth"
-            ><strong
-              >$
-              {{
-                product.productPrice * productService.getValueCurrency()
-                  | number
-              }}</strong
-            ></span
-          >
+          <span *ngIf="product.discount" class="rigth">
+            <strong
+            >$
+            {{
+              product[productService.getValueCurrency()] - (product[productService.getValueCurrency()] * (product.discount/100)) | number
+            }}</strong>
+            <p class="decoration">
+                $
+                {{
+                  product[productService.getValueCurrency()] | number
+                }}
+            </p>
+            </span>
+            <span *ngIf="!product.discount" class="rigth">
+                <strong
+                  >$
+                  {{
+                    product[productService.getValueCurrency()]
+                      | number
+                  }}</strong>
+                </span>
         </div>
       </td>
       <td class="delete">
@@ -73,7 +85,7 @@
           >Total ({{ cartQuantity }} productos):
           <strong
             >${{
-              totalValue * productService.getValueCurrency() | number
+              totalValue | number
             }}</strong
           ></span
         >
@@ -85,7 +97,7 @@
     <span class="sizeTotal"
       >Total ({{ cartQuantity }} productos):
       <strong
-        >${{ totalValue * productService.getValueCurrency() | number }}</strong
+        >${{ totalValue | number }}</strong
       >
     </span>
     <a

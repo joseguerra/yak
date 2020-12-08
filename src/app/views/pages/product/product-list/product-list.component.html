@@ -67,7 +67,7 @@
                       width="360px"
                       height="640px"
                     />
-                    <img *ngIf="(productService.getValueCurrency() === 1 && !product.enable_ve) || productService.getValueCurrency() !== 1 && !product.enable_co" src="./assets/banner_img/agotado.jpg" class="imagen ng-star-inserted">
+                    <img *ngIf="(productService.getValueCurrency() === 'price_ve' && !product.enable_ve) || productService.getValueCurrency() === 'price_co' && !product.enable_co" src="./assets/banner_img/agotado.jpg" class="imagen ng-star-inserted">
                   </a>
                   <!--/.Card image-->
                   <!--Card content-->
@@ -93,13 +93,26 @@
                     ></p>
                     <!--Card footer-->
                     <div class="card-footer">
-                      <span class="left"
+                      <span *ngIf="product.discount" class="left"
                         >$
                         {{
-                          product.productPrice *
-                            productService.getValueCurrency() | number
-                        }}</span
-                      >
+                          product[productService.getValueCurrency()] - (product[productService.getValueCurrency()] * (product.discount/100)) | number
+                        }}
+                        <p class="decoration">
+                            $
+                            {{
+                              product[productService.getValueCurrency()] | number
+                            }}
+                        </p>
+                        </span>
+                        <span *ngIf="!product.discount" class="left"
+                        >$
+                        {{
+                          product[productService.getValueCurrency()] | number
+                        }}
+
+                        </span>
+
                       <span class="right">
                         <a
                           placement="top"
@@ -110,7 +123,7 @@
                           <i class="fa fa-heart"></i>
                         </a>
                         <a
-                        *ngIf="((productService.getValueCurrency() === 1 && product.enable_ve) || productService.getValueCurrency() !== 1 && product.enable_co) && product.productQuantity"
+                        *ngIf="((productService.getValueCurrency() === 'price_ve' && product.enable_ve) || productService.getValueCurrency() === 'price_co' && product.enable_co) && product.productQuantity"
                           placement="top"
                           mdbTooltip="Add to Cart"
                           container="body"
@@ -253,68 +266,102 @@
 
           <div class="row">
             <div class="col-md-6 mb-3">
-              <label for="productPrice">Precio</label>
+              <label for="price_ve">Precio Veneuela</label>
               <input
                 type="number"
-                name="productPrice"
+                name="price_ve"
                 class="form-control"
-                [(ngModel)]="product.productPrice"
-                placeholder="Product Price"
-                id="productPrice"
+                [(ngModel)]="product.price_ve"
+                placeholder="Precio Veneuela"
+                id="price_ve"
                 value=""
                 required
               />
-              <div *ngIf="!product.productPrice" [ngClass]="'error'">
-                Precio es requerido.
+              <div *ngIf="!product.price_ve" [ngClass]="'error'">
+                Precio Venezuela es requerido.
               </div>
             </div>
             <div class="col-md-6 mb-3">
-              <label for="productQuantity">Stock</label>
+              <label for="price_co">Precio Colombia</label>
               <input
                 type="number"
                 class="form-control"
-                id="productQuantity"
-                name="productQuantity"
-                [(ngModel)]="product.productQuantity"
-                placeholder="Product Quantity"
+                id="price_co"
+                name="price_co"
+                [(ngModel)]="product.price_co"
+                placeholder="Precio Colombia"
                 value=""
                 required
               />
-              <div *ngIf="!product.productQuantity" [ngClass]="'error'">
-                Stock es requerido.
+              <div *ngIf="!product.price_co" [ngClass]="'error'">
+                Precio Colombia es requerido.
               </div>
             </div>
           </div>
 
-          <div class="mb-3">
-            <label for="brand">Proveedor</label>
-            <input
-              type="text"
-              class="form-control"
-              id="brand"
-              [(ngModel)]="product.brand"
-              name="brand"
-              placeholder="Product Seller"
-              required
-            />
-            <div *ngIf="!product.brand" [ngClass]="'error'">
-              Proveedor es requerido.
-            </div>
+          <div class="row">
+              <div class="col-md-6 mb-3">
+                  <label for="productQuantity">Stock</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="productQuantity"
+                    name="productQuantity"
+                    [(ngModel)]="product.productQuantity"
+                    placeholder="Product Quantity"
+                    value=""
+                    required
+                  />
+                  <div *ngIf="!product.productQuantity" [ngClass]="'error'">
+                    Stock es requerido.
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="brand">Descuento %</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="discount"
+                      [(ngModel)]="product.discount"
+                      name="discount"
+                      placeholder="%"
+                      required
+                    />
+                  </div>
           </div>
-          <div class="mb-3">
-            <label for="SKU">SKU</label>
-            <input
-              type="text"
-              class="form-control"
-              id="productSKU"
-              [(ngModel)]="product.productSKU"
-              name="productSKU"
-              placeholder=""
-              required
-            />
-            <div *ngIf="!product.productSKU" [ngClass]="'error'">
-              SKU es requerido.
-            </div>
+
+          <div class="row">
+              <div class="col-md-6 mb-3">
+                  <label for="brand">Proveedor</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="brand"
+                    [(ngModel)]="product.brand"
+                    name="brand"
+                    placeholder="Product Seller"
+                    required
+                  />
+                  <div *ngIf="!product.brand" [ngClass]="'error'">
+                    Proveedor es requerido.
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="SKU">SKU</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="productSKU"
+                      [(ngModel)]="product.productSKU"
+                      name="productSKU"
+                      placeholder=""
+                      required
+                    />
+                    <div *ngIf="!product.productSKU" [ngClass]="'error'">
+                      SKU es requerido.
+                    </div>
+                </div>
+
           </div>
 
           <div class="mb-3">
@@ -390,7 +437,6 @@
             [disabled]="
               !product.brand ||
               !product.productQuantity ||
-              !product.productPrice ||
               !product.productDescription ||
               !product.productCategory ||
               !product.productName ||
@@ -407,7 +453,6 @@
             [disabled]="
               !product.brand ||
               !product.productQuantity ||
-              !product.productPrice ||
               !product.productDescription ||
               !product.productCategory ||
               !product.productName ||

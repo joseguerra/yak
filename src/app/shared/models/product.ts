@@ -4,11 +4,14 @@ export class Product {
   productName: string;
   productCategory: string;
   productPrice: number;
+  price_ve: number;
+  price_co: number;
   productDescription: string;
   productAdded: number;
   productQuatity: number;
   cartQuantity: number;
   productQuantity: number;
+  discount: number;
   ratings: number;
   favourite: boolean;
   brand: string;

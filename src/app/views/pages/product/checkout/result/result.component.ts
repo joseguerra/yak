@@ -40,8 +40,8 @@ export class ResultComponent implements OnInit {
 
     this.products.forEach((product) => {
       for (let i = 0; i < product.cartQuantity; i++) {
-        this.totalPrice += product.productPrice;
-        this.pedido+= product.productName + ' - ' + product.cartQuantity + 'set(s) = ' + product.productPrice * this.productService.getValueCurrency() +'$%0A'
+        this.totalPrice += product[this.productService.getValueCurrency()] - (product[this.productService.getValueCurrency()] * (product.discount/100));
+        this.pedido+= product.productName + ' - ' + product.cartQuantity + 'set(s) = ' + product[this.productService.getValueCurrency()] +'$%0A'
       }
     });
 
@@ -108,7 +108,7 @@ export class ResultComponent implements OnInit {
       description: "Yak Brake",
       invoice: "1234",
       currency: "cop",
-      amount: this.totalPrice * this.productService.getValueCurrency(),
+      amount: this.totalPrice,
       tax_base: "0",
       tax: "0",
       country: "co",
@@ -148,7 +148,7 @@ export class ResultComponent implements OnInit {
     const payload: Order = {
       ...productForm.value,
       products: this.products,
-      total: this.totalPrice * this.productService.getValueCurrency(),
+      total: this.totalPrice,
       status: "IK_TODO",
       date: this.date,
     };

@@ -139,6 +139,12 @@
   }
 }
 
+.decoration{
+  text-decoration-line: line-through;
+  font-size: 13px;
+  color: #565959;
+}
+
 @media (max-width: 600px) {
   .container {
     display: grid;

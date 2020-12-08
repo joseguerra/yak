@@ -119,7 +119,7 @@
                   >Total ({{ cartQuantity }} productos):
                   <strong
                     >${{
-                      totalValue * productService.getValueCurrency() | number
+                      totalValue | number
                     }}</strong
                   ></span
                 >
@@ -161,8 +161,8 @@
                       ><strong
                         >$
                         {{
-                          product.productPrice *
-                            productService.getValueCurrency() | number
+                          product[productService.getValueCurrency()]
+                             | number
                         }}</strong
                       ></span
                     >

@@ -21,13 +21,24 @@
               <div>
                 <h6 class="my-0">Precio</h6>
               </div>
-              <span class="text-muted" style="color: crimson !important;"
+              <span *ngIf="product.discount" class="text-muted" style="color: crimson !important;"
                 >$
                 {{
-                  product.productPrice * productService.getValueCurrency()
-                    | number
-                }}</span
-              >
+                  product[productService.getValueCurrency()] - (product[productService.getValueCurrency()] * (product.discount/100)) | number
+                }}
+                <p  class="decoration">
+                    $
+                    {{
+                      product[productService.getValueCurrency()] | number
+                    }}
+                </p>
+              </span>
+              <span *ngIf="!product.discount" class="text-muted" style="color: crimson !important;"
+              >$
+              {{
+                product[productService.getValueCurrency()] | number
+              }}
+            </span>
             </li>
             <li
               class="list-group-item d-flex justify-content-between lh-condensed"
@@ -41,7 +52,7 @@
             </li>
           </ul>
 
-          <div *ngIf="((productService.getValueCurrency() === 1 && product.enable_ve) || (productService.getValueCurrency() !== 1 && product.enable_co)) && !loading" class="content">
+          <div *ngIf="((productService.getValueCurrency() === 'price_ve' && product.enable_ve) || (productService.getValueCurrency() === 'price_co' && product.enable_co)) && !loading" class="content">
             <label>
               Cantidad:
             </label>
@@ -70,10 +81,10 @@
             </div>
           </div>
 
-          <h1 *ngIf="(productService.getValueCurrency() === 1 && !product.enable_ve) || (productService.getValueCurrency() !== 1 && !product.enable_co)" style="color: red;"> Agotado</h1>
+          <h1 *ngIf="(productService.getValueCurrency() === 'price_ve' && !product.enable_ve) || (productService.getValueCurrency() === 'price_co' && !product.enable_co)" style="color: red;"> Agotado</h1>
 
           <button
-            *ngIf="((productService.getValueCurrency() === 1 && product.enable_ve) || (productService.getValueCurrency() !== 1 && product.enable_co)) && !loading && product.productQuantity"
+            *ngIf="((productService.getValueCurrency() === 'price_ve' && product.enable_ve) || (productService.getValueCurrency() === 'price_co' && product.enable_co)) && !loading && product.productQuantity"
             class="btn btn-primary"
             (click)="addToCart(product)"
           >

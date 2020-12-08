@@ -10,7 +10,7 @@ declare var $: any;
       <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
         <router-outlet #o="outlet">
           <a
-            *ngIf="productService.getValueCurrency() === 1"
+            *ngIf="productService.getValueCurrency() === 'price_ve'"
             class="qlwapp-toggle"
             data-action="open"
             data-phone="+584247117137"
@@ -25,7 +25,7 @@ declare var $: any;
             </span>
           </a>
           <a
-            *ngIf="productService.getValueCurrency() !== 1"
+            *ngIf="productService.getValueCurrency() === 'price_co'"
             class="qlwapp-toggle"
             data-action="open"
             data-phone="+573157005569"
@@ -92,9 +92,10 @@ export class AppComponent implements OnInit {
   constructor(public productService: ProductService) {}
 
   ngOnInit() {
-    if (!this.productService.getValueCurrency()) {
+    console.log(this.productService.getValueCurrency());
+    if (this.productService.getValueCurrency() !=='price_ve' && this.productService.getValueCurrency() !=='price_co') {
       $("#exampleModalCenter").modal("show");
-      this.productService.addToValue(1);
+      this.productService.addToValue('price_ve');
     }
 
     //if (navigator.geolocation) {

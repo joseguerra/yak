@@ -30,7 +30,7 @@ export class CartCalculatorComponent implements OnInit, OnChanges {
     this.totalValue = 0;
     this.products.forEach((product) => {
       for (let i = 0; i < product.cartQuantity; i++) {
-        this.totalValue += product.productPrice;
+        this.totalValue += product[this.productService.getValueCurrency()] - (product[this.productService.getValueCurrency()] * (product.discount/100));
         this.cartQuantity++;
       }
     });
@@ -51,7 +51,7 @@ export class CartCalculatorComponent implements OnInit, OnChanges {
     this.cartQuantity = 0;
     this.products.forEach((product) => {
       for (let i = 0; i < product.cartQuantity; i++) {
-        this.totalValue += product.productPrice;
+        this.totalValue += product[this.productService.getValueCurrency()] - (product[this.productService.getValueCurrency()] * (product.discount/100));
         this.cartQuantity++;
       }
     });

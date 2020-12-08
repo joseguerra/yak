@@ -41,7 +41,7 @@ export class IndexComponent implements OnInit {
         this.products = this.productService.getLocalCartProducts();
         this.products.forEach((product) => {
           for (let i = 0; i < product.cartQuantity; i++) {
-            this.totalPrice += product.productPrice;
+            this.totalPrice += product[this.productService.getValueCurrency()];
           }
         });
         this.date = Date.now();
@@ -76,7 +76,7 @@ export class IndexComponent implements OnInit {
     const payload: Order = {
       ...JSON.parse(localStorage.getItem("formData")),
       products: this.products,
-      total: this.totalPrice * this.productService.getValueCurrency(),
+      total: this.totalPrice,
       status: "IK_TODO",
       date: this.date,
       id: id,

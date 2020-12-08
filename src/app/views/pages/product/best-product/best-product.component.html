@@ -68,13 +68,25 @@
 
             <!--Card footer-->
             <div class="card-footer">
-              <span class="left"
-                >$
-                {{
-                  product.productPrice * productService.getValueCurrency()
-                    | number
-                }}</span
-              >
+              <span *ngIf="product.discount" class="left"
+              >$
+              {{
+                product[productService.getValueCurrency()] - (product[productService.getValueCurrency()] * (product.discount/100)) | number
+              }}
+              <p class="decoration">
+                  $
+                  {{
+                    product[productService.getValueCurrency()] | number
+                  }}
+              </p>
+              </span>
+              <span *ngIf="!product.discount" class="left"
+              >$
+              {{
+                product[productService.getValueCurrency()] | number
+              }}
+
+              </span>
               <span class="right">
                 <a
                   placement="top"

@@ -20,6 +20,12 @@
   padding-left: 40%;
 }
 
+.decoration{
+  text-decoration-line: line-through;
+  font-size: 13px;
+  color: #565959;
+}
+
 @media (min-width: 1000px){
   .imagen{
     position: absolute;

@@ -25,44 +25,44 @@
         />
       </span>
     </div>
-    <div class="hide end margin-top3">
-        <a
-        data-target="#basicExampleNav"
-        dropdownToggle
-        type="button"
-        class="nav-link dropdown-toggle waves-light"
-      >
-        <i class="fa fa-usd"> </i>
-        <img
-          *ngIf="productService.getValueCurrency() !== 1"
-          class="padding"
-          src="../../../../../assets/banner_img/197575.svg"
-          width="20px"
-          height="20px" />
-        <img
-          *ngIf="productService.getValueCurrency() === 1"
-          class="padding"
-          src="../../../../../assets/banner_img/197580.svg"
-          width="20px"
-          height="20px" />
-        <span class="caret"></span
-      ></a>
-      <div
-        *dropdownMenu
-        class="dropdown-menu dropdown dropdown-primary"
-        role="menu"
-      >
+    <div class="nav-item dropdown hide end margin-top3" dropdown>
         <a
           data-target="#basicExampleNav"
-          class="dropdown-item waves-light"
-          href="javascript:;;"
-          (click)="setLang(lang.language)"
-          *ngFor="let lang of languageList"
+          dropdownToggle
+          type="button"
+          class="nav-link dropdown-toggle waves-light"
         >
-          <img [src]="lang.image" alt="" width="30px" height="30px" />
-          {{ lang.language }}</a
+          <i class="fa fa-usd"> </i>
+          <img
+            *ngIf="productService.getValueCurrency() === 'price_co'"
+            class="padding"
+            src="../../../../../assets/banner_img/197575.svg"
+            width="20px"
+            height="20px" />
+          <img
+            *ngIf="productService.getValueCurrency() === 'price_ve'"
+            class="padding"
+            src="../../../../../assets/banner_img/197580.svg"
+            width="20px"
+            height="20px" />
+          <span class="caret"></span
+        ></a>
+        <div
+          *dropdownMenu
+          class="dropdown-menu dropdown dropdown-primary"
+          role="menu"
         >
-      </div>
+          <a
+            data-target="#basicExampleNav"
+            class="dropdown-item waves-light"
+            href="javascript:;;"
+            (click)="setLang(lang.language)"
+            *ngFor="let lang of languageList"
+          >
+            <img [src]="lang.image" alt="" width="30px" height="30px" />
+            {{ lang.language }}</a
+          >
+        </div>
     </div>
     <div class="hide end">
       <i
@@ -539,13 +539,13 @@
         >
           <i class="fa fa-usd"> </i>
           <img
-            *ngIf="productService.getValueCurrency() !== 1"
+            *ngIf="productService.getValueCurrency() === 'price_co'"
             class="padding"
             src="../../../../../assets/banner_img/197575.svg"
             width="20px"
             height="20px" />
           <img
-            *ngIf="productService.getValueCurrency() === 1"
+            *ngIf="productService.getValueCurrency() === 'price_ve'"
             class="padding"
             src="../../../../../assets/banner_img/197580.svg"
             width="20px"

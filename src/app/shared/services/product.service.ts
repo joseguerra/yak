@@ -180,7 +180,7 @@ export class ProductService {
     localStorage.setItem("avct_item", JSON.stringify([]));
   }
 
-  addToValue(data: number): void {
+  addToValue(data: string): void {
     localStorage.setItem("avct_value", JSON.stringify(data));
   }
 
@@ -231,7 +231,7 @@ export class ProductService {
     return quantity;
   }
 
-  getValueCurrency(): number {
+  getValueCurrency(): string {
     return JSON.parse(localStorage.getItem("avct_value"));
   }
 }
