@@ -27,6 +27,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: "stores",
+        loadChildren: () =>
+          import("./views/pages/stores/stores.module").then(
+            (m) => m.StoresModule
+          ),
+      },
+      {
         path: "users",
         loadChildren: () =>
           import("./views/pages/user/user.module").then((m) => m.UserModule),

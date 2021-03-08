@@ -6,6 +6,10 @@
   text-align: center;
 }
 
+.cursor{
+  cursor: pointer;
+}
+
 .has-text-align-center{
   text-align: center;
     color: #030;
@@ -16,12 +20,58 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.blog-container{
+  @media (min-width: 1000px) {
+    display: grid;
+    grid-gap: 1rem;
+    padding-top: 1rem;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 999px) {
+    display: grid;
+    grid-gap: 1rem;
+    padding-top: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+}
+
 .back{
   height:40em; background-size:cover; width:auto;
      background-position:50% 50%;
 }
 
+.margin-top{
+  margin-top: .8rem;
+}
 
+.aling{
+  text-align: center;
+}
+
+.font-size{
+  margin-top: 23px;
+
+  font-size: 32px;
+    line-height: 1.125;
+    font-weight: 600;
+    letter-spacing: .002em;
+    font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+}
+
+.color-blue{
+  color: #06c;
+}
+
+.back-blue{
+  background: #fbfbfd;
+}
+
+
+.margin-bot{
+  margin-bottom: 8rem;
+}
 .wpsm_service-icon{
 
   background: #fff!important;
@@ -37,4 +87,12 @@
     line-height: 70px;
   }
 
+}
+
+.color-best-border {
+  border-left: 3px solid #ffa000 !important;
+}
+
+.color-best {
+  color: #ffa000 !important;
 }

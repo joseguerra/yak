@@ -205,6 +205,26 @@
             >
           </li>
 
+          <li class="nav-item hide" *ngIf="authService.isAdmin$ | async">
+            <a
+              data-target="#basicExampleNav"
+              data-toggle="collapse"
+              class="nav-link"
+              routerLinkActive="class-name"
+              [routerLink]="['/stores/all-stores']"
+              >ALIADOS</a
+            >
+          </li>
+          <li class="nav-item hide2" *ngIf="authService.isAdmin$ | async">
+            <a
+              data-target="#basicExampleNav"
+              class="nav-link"
+              routerLinkActive="class-name"
+              [routerLink]="['/stores/all-stores']"
+              >ALIADOS</a
+            >
+          </li>
+
           <li class="nav-item hide">
             <a
               data-target="#basicExampleNav"
@@ -371,6 +391,26 @@
           routerLinkActive="class-name"
           [routerLink]="['/products/catalog']"
           >CATÁLOGO</a
+        >
+      </li>
+
+      <li class="nav-item hide" *ngIf="authService.isAdmin$ | async">
+        <a
+          data-target="#basicExampleNav"
+          data-toggle="collapse"
+          class="nav-link"
+          routerLinkActive="class-name"
+          [routerLink]="['/stores/all-stores']"
+          >ALIADOS</a
+        >
+      </li>
+      <li class="nav-item hide2" *ngIf="authService.isAdmin$ | async">
+        <a
+          data-target="#basicExampleNav"
+          class="nav-link"
+          routerLinkActive="class-name"
+          [routerLink]="['/stores/all-stores']"
+          >ALIADOS</a
         >
       </li>
       <li class="nav-item hide">

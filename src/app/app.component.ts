@@ -92,7 +92,6 @@ export class AppComponent implements OnInit {
   constructor(public productService: ProductService) {}
 
   ngOnInit() {
-    console.log(this.productService.getValueCurrency());
     if (this.productService.getValueCurrency() !=='price_ve' && this.productService.getValueCurrency() !=='price_co') {
       $("#exampleModalCenter").modal("show");
       this.productService.addToValue('price_ve');

@@ -19,7 +19,7 @@ Trace:
 
 npm manifest: 
   {
-    "name": "shopping-cart",
+    "name": "yak",
     "version": "2.1.4",
     "private": true,
     "scripts": {

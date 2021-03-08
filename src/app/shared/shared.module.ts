@@ -16,6 +16,7 @@ import { FilterByBrandPipe } from "./pipes/filterByBrand.pipe";
 import { ProductService } from "./services/product.service";
 import { CatalogService } from "./services/catalog.service";
 import { BlogService } from "./services/blog.service";
+import { StoresService } from "./services/stores.service";
 import { OrderService } from "./services/order.service";
 import { EventService } from "./services/event.service";
 import { AdminGaurd } from "./guards/admin-gaurd";
@@ -85,6 +86,7 @@ import { FireBaseConfig } from "./../../environments/firebase.config";
     ProductService,
     CatalogService,
     BlogService,
+    StoresService,
     OrderService,
     EventService,
     UserService,

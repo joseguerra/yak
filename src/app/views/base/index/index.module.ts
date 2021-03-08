@@ -13,9 +13,11 @@ import { IndexComponent } from "./index.component";
 import { LoginComponent } from "./login/login.component";
 import { FooterComponent } from "./footer/footer.component";
 import { NavbarComponent } from "./navbar/navbar.component";
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 @NgModule({
   imports: [
+    IvyCarouselModule,
     CommonModule,
     ProductModule,
     SharedModule,

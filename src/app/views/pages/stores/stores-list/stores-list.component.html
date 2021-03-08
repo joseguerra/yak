@@ -10,7 +10,7 @@
           data-target="#exampleModalLong"
           (click)="openCreate()"
         >
-          Agregar Blog
+          Agregar Tienda
         </button>
       </div>
     </div>
@@ -47,37 +47,12 @@
 
           <div class="col-md-4" *ngFor="let card of productList; let cardIndex = index">
             <mdb-card class="my-1">
-              <mdb-card-img [src]="card.blogImage" alt="Card image cap"></mdb-card-img>
+              <img class="heigth-img" [src]="card.path" alt="Card image cap"/>
               <mdb-card-body>
                 <mdb-card-title>
-                  <h4 class="color-best">{{card.blogName}}</h4>
+                  <h4 class="color-best">{{card.storeName}}</h4>
                 </mdb-card-title>
-                <a [routerLink]="['/blog', card.url]" mdbBtn color="primary" class="waves-light" mdbWavesEffect>Ver Detalle</a>
-                <span class="right">
-
-
-                  <!--
-                  <a
-                    placement="top"
-                    mdbTooltip="Remove Product"
-                    container="body"
-                    *ngIf="authService.isAdmin$ | async"
-                    (click)="removeProduct(product.$key)"
-                  >
-                    <i class="fa fa-trash"></i>
-                  </a>-->
-                  <a
-                    placement="top"
-                    mdbTooltip="Edit Product"
-                    container="body"
-                    *ngIf="authService.isAdmin$ | async"
-                    data-toggle="modal"
-                    data-target="#exampleModalLong"
-                    (click)="openEdit(card)"
-                  >
-                    <i class="fa fa-edit"></i>
-                  </a>
-                </span>
+                <a [routerLink]="['/store', card.url]" mdbBtn color="primary" class="waves-light" mdbWavesEffect>Ver Detalle</a>
               </mdb-card-body>
             </mdb-card>
           </div>
@@ -112,10 +87,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 *ngIf="!edit" class="modal-title" id="exampleModalLongTitle">
-          Agregar Blog
+          Agregar Tienda
         </h5>
         <h5 *ngIf="edit" class="modal-title" id="exampleModalLongTitle">
-          Editar Blog
+          Editar Tienda
         </h5>
         <button
           type="button"
@@ -130,25 +105,25 @@
         <form class="needs-validation" #addProductForm="ngForm">
           <div class="row">
             <div class="col-md-6 mb-3">
-              <label for="blogName">Nombre</label>
+              <label for="storeName">Nombre</label>
               <input
                 type="text"
                 class="form-control"
-                id="blogName"
-                name="blogName"
-                [(ngModel)]="product.blogName"
+                id="storeName"
+                name="storeName"
+                [(ngModel)]="product.storeName"
                 placeholder=""
                 value=""
                 required
               />
-              <div *ngIf="!product.blogName" [ngClass]="'error'">
+              <div *ngIf="!product.storeName" [ngClass]="'error'">
                 Nombre es requerido.
               </div>
             </div>
           </div>
           <div class="row">
               <div class="col-md-12 mb-3">
-                <label for="blogName">URL</label>
+                <label for="storeURL">URL</label>
                 <input
                   type="text"
                   class="form-control"
@@ -166,16 +141,16 @@
             </div>
 
           <div class="mb-3">
-            <label for="blogDescription"
+            <label for="storeDescription"
               >Descripcion
               <span class="text-muted">(Optional)</span>
             </label>
             <angular-editor
-            id="blogDescription"
+            id="storeDescription"
             placeholder=""
-            name="blogDescription" [(ngModel)]="product.blogDescription">
+            name="storeDescription" [(ngModel)]="product.storeDescription">
             </angular-editor>
-            <div *ngIf="!product.blogDescription" [ngClass]="'error'">
+            <div *ngIf="!product.storeDescription" [ngClass]="'error'">
               Descripcion es requerido.
             </div>
           </div>
@@ -212,29 +187,29 @@
             *ngIf="!edit"
             (click)="createProduct(addProductForm)"
             [disabled]="
-              !product.blogName ||
-              !product.blogImage ||
-              !product.blogDescription ||
+              !product.storeName ||
+              !product.path ||
+              !product.storeDescription ||
               !product.url
             "
             class="btn btn-primary btn-lg btn-block"
             type="submit"
           >
-            Agregar Blog
+            Agregar Tienda
           </button>
           <button
             *ngIf="edit"
             (click)="editProduct(product)"
             [disabled]="
-              !product.blogName ||
-              !product.blogImage ||
-              !product.blogDescription ||
+              !product.storeName ||
+              !product.path ||
+              !product.storeDescription ||
               !product.url
             "
             class="btn btn-primary btn-lg btn-block"
             type="submit"
           >
-            Editar Blog
+            Editar Tienda
           </button>
         </form>
       </div>

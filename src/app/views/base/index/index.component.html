@@ -61,43 +61,55 @@
     </a>
     <!--/.Controls-->
   </div>
-  <!--/.Carousel Wrapper-->
-  <br />
-  <br />
+  <!--/.Carousel Wrapper
+
+  <div class="blog-container">
+    <div class="back-blue cursor">
+
+        <h4 class="aling font-size">Increíbles pastillas para generar el mejor frenado en tu bicicleta</h4>
+        <div class="aling">
+          <a class="color-blue margin-top" href="/blog/Increíbles-pastillas-de-frenos-para-generar-el-mejor-frenado-en-tu-bicicleta" >Más información</a>
+        </div>
+        <img class="img-fluid" src="https://firebasestorage.googleapis.com/v0/b/ecommerce-bd610.appspot.com/o/blogs%2Fimageedit_1_8611498498.png?alt=media&token=6350e721-3810-4e22-bf55-d9926fc43eb4" alt="Card image cap">
+
+    </div>
+    <div class="back-blue cursor">
+
+      <h4 class="aling font-size">¿Como debo cambiar las pastillas de freno YAK?</h4>
+      <div class="aling">
+        <a class="color-blue margin-top" href="/blog/como-debo-cambiar-las-pastillas-de-freno-yak" >Más información</a>
+      </div>
+      <img class="img-fluid" src="https://firebasestorage.googleapis.com/v0/b/ecommerce-bd610.appspot.com/o/blogs%2Fevolution.jpg?alt=media&token=5a1b031c-3b69-412e-95ee-b813dd117894" alt="Card image cap">
+
+    </div>
+  </div>-->
+
   <div class="container">
-      <h2 class="has-text-align-center">Tu compra en 3 pasos</h2>
-  <br />
-  <div class="pasos-container">
-    <div>
-      <div class="wpsm_service-icon">
-        <i class="fa fa-shopping-cart"></i>
-      </div>
-      <div >
-        <h3 >Agregue</h3>
-        <p> Agregue Todos los productos que desee al carrito.</p>
-      </div>
-    </div>
-    <div>
-      <div class="wpsm_service-icon">
-        <i class="fa fa-credit-card-alt"></i>
-      </div>
-      <div>
-        <h3>Pague</h3>
-        <p> Pague el servicio en línea como deseé.</p>
-      </div>
-    </div>
-    <div>
-      <div class="wpsm_service-icon">
-        <i class="fa fa-send"></i>
-      </div>
-      <div>
-        <h3>Reciba</h3>
-        <p> Reciba sus paquetes totalmente gratis.</p>
-      </div>
-    </div>
-  </div>
+
   <br />
   <app-best-product></app-best-product>
+
+  <div class="row margin-bot">
+    <div class="col-md-12">
+      <blockquote class="blockquote float-left bq-primary color-best-border">
+        <h3 class="color-best">
+          Tiendas aliadas
+        </h3>
+      </blockquote>
+
+    </div>
+    <div *ngIf="!loadStores">
+      <app-card-loader [loop]="4" [height]="500"></app-card-loader>
+    </div>
+    <carousel
+    *ngIf="loadStores"
+    [images]="images"
+    [autoplay]="true"
+    [autoplayInterval]="3000"
+    [margin]="50"
+    ></carousel>
+  </div>
+
 </div>
 
 <div

@@ -1,5 +1,5 @@
 {
-  "name": "shopping-cart",
+  "name": "yak",
   "version": "2.1.4",
   "private": true,
   "scripts": {
@@ -22,15 +22,9 @@
     }
   },
   "author": {
-    "name": "Mohammed Ismail",
-    "email": "ikismail7@gmail.com"
+    "name": "Jose Guerra",
+    "email": "jagr.@gmail.com"
   },
-  "contributors": [
-    {
-      "name": "Mohammed Ismail",
-      "email": "ikismail7@gmail.com"
-    }
-  ],
   "dependencies": {
     "@angular/animations": "^10.0.2",
     "@angular/cdk": "^10.0.1",
@@ -51,6 +45,7 @@
     "@ngrx/store-devtools": "^9.2.0",
     "@nguniversal/express-engine": "^10.1.0",
     "angular-bootstrap-md": "^9.3.1",
+    "angular-responsive-carousel": "^2.0.1",
     "animate.css": "^4.1.0",
     "bootstrap": "^4.5.0",
     "bootstrap-icons": "^1.0.0-alpha5",
