@@ -15,7 +15,8 @@ import { BlogModule } from "./views/pages/blog/blog.module";
 import { StoresModule } from "./views/pages/stores/stores.module";
 import { UserModule } from "./views/pages/user/user.module";
 import { EventModule } from "./views/pages/event/event.module";
-import { ServiceWorkerModule } from "@angular/service-worker";
+import { QuestionsModule } from "./views/pages/questions/questions.module";
+import { ServiceWorkerModule, SwRegistrationOptions } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 
 /* to load and set en.json as the default application language */
@@ -34,11 +35,9 @@ export function setupTranslateFactory(service: TranslateService) {
     StoresModule,
     UserModule,
     EventModule,
+    QuestionsModule,
     SharedModule,
-    ServiceWorkerModule.register("./ngsw-worker.js", {
-      enabled: environment.production,
-      registrationStrategy: "registerImmediately",
-    }),
+    ServiceWorkerModule.register("./ngsw-worker.js")
     // AngularFireModule.initializeApp(FireBaseConfig),
     // AngularFireDatabaseModule,
   ],
@@ -49,6 +48,10 @@ export function setupTranslateFactory(service: TranslateService) {
       useFactory: setupTranslateFactory,
       deps: [TranslateService],
       multi: true,
+    },
+    {
+      provide: SwRegistrationOptions,
+      useFactory: () => ({ enabled: environment.production }),
     },
   ],
   bootstrap: [AppComponent],

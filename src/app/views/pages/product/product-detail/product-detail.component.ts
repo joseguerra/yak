@@ -1,6 +1,6 @@
 import { Product } from "../../../../shared/models/product";
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute} from "@angular/router";
 import { ProductService } from "../../../../shared/services/product.service";
 import { ToastrService } from "src/app/shared/services/toastr.service";
 import {
@@ -9,6 +9,9 @@ import {
   NgxGalleryAnimation,
   NgxGalleryImageSize,
 } from "ngx-gallery-9";
+
+declare var $: any;
+declare let fbq:Function;
 @Component({
   selector: "app-product-detail",
   templateUrl: "./product-detail.component.html",
@@ -21,11 +24,12 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   product: Product;
   loading: boolean = true;
   valueList = [];
+
   constructor(
-    private route: ActivatedRoute,
-    public productService: ProductService,
-    private toastrService: ToastrService
-  ) {
+    private route: ActivatedRoute, 
+    public productService: ProductService, 
+    private toastrService: ToastrService){
+
     this.product = new Product();
   }
 

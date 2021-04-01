@@ -24,7 +24,7 @@ import { CartCalculatorComponent } from "./cart-calculator/cart-calculator.compo
 import { NgxGalleryModule } from "ngx-gallery-9";
 import { NgxDropzoneModule } from "ngx-dropzone";
 import { AngularEditorModule } from '@kolkov/angular-editor';
-
+import { LoadingImageComponent} from '../../.././components/loader.image'
 @NgModule({
   imports: [
     CommonModule,
@@ -36,6 +36,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     CheckoutModule,
   ],
   declarations: [
+    LoadingImageComponent,
     ProductComponent,
     BestProductComponent,
     ProductListComponent,

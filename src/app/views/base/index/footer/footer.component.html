@@ -1,18 +1,175 @@
-<!--Footer-->
-<footer class="page-footer indigo center-on-small-only mt-3">
+<footer class="page-footer">
   <!--Copyright-->
-  <div class="footer-copyright">
+  <div class="footer-grid">
     <div class="container-fluid">
-      © 2018 Copyright:
-      <a href="mailto:ikismail7@gmail.com"> Mohammed Ismail </a>
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <span
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="nav-link title"
+                >Servicio al Cliente
+          </span>
+            </li>
+            <li class="nav-item">
+                <a
+                  data-target="#basicExampleNav"
+                  routerLinkActive="class-name"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  data-toggle="collapse"
+                  class="nav-link"
+                  [routerLink]="['/questions']"
+                  >Preguntas Frecuentes
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li><!--Copyright
+              <li class="nav-item">
+                  <a
+                    data-target="#basicExampleNav"
+                    routerLinkActive="class-name"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    data-toggle="collapse"
+                    class="nav-link"
+                    [routerLink]="['/products/contact']"
+                    >Envíos y Tarifas
+                    <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+              <li class="nav-item">
+                  <a
+                    data-target="#basicExampleNav"
+                    routerLinkActive="class-name"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    data-toggle="collapse"
+                    class="nav-link"
+                    [routerLink]="['/products/contact']"
+                    >Garantías
+                    <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                      data-target="#basicExampleNav"
+                      routerLinkActive="class-name"
+                      [routerLinkActiveOptions]="{ exact: true }"
+                      data-toggle="collapse"
+                      class="nav-link"
+                      [routerLink]="['/products/contact']"
+                      >Devoluciones
+                      <span class="sr-only">(current)</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                      <a
+                        data-target="#basicExampleNav"
+                        routerLinkActive="class-name"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        data-toggle="collapse"
+                        class="nav-link"
+                        [routerLink]="['/products/contact']"
+                        >Téminos de Uso
+                        <span class="sr-only">(current)</span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                          data-target="#basicExampleNav"
+                          routerLinkActive="class-name"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          data-toggle="collapse"
+                          class="nav-link"
+                          [routerLink]="['/products/contact']"
+                          >Privacidad
+                          <span class="sr-only">(current)</span>
+                        </a>
+                      </li>-->
+          <li class="nav-item">
+              <a
+                data-target="#basicExampleNav"
+                routerLinkActive="class-name"
+                [routerLinkActiveOptions]="{ exact: true }"
+                data-toggle="collapse"
+                class="nav-link"
+                [routerLink]="['/products/contact']"
+                >Contáctanos
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+      </ul>
+    </div>
+    <div class="container-fluid">
+        <ul class="navbar-nav mr-auto hide">
+            <li class="nav-item hide">
+                <span
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="nav-link title"
+                >Acerca de Yak Brake
+          </span>
+              </li>
+              <!--/.Copyright
+              <li class="nav-item">
+                  <a
+                    data-target="#basicExampleNav"
+                    routerLinkActive="class-name"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    data-toggle="collapse"
+                    class="nav-link"
+                    [routerLink]="['/events']"
+                    >Eventos
+                    <span class="sr-only">(current)</span>
+                  </a>
+                </li>-->
+                <li class="nav-item">
+                    <a
+                      data-target="#basicExampleNav"
+                      routerLinkActive="class-name"
+                      [routerLinkActiveOptions]="{ exact: true }"
+                      data-toggle="collapse"
+                      class="nav-link"
+                      [routerLink]="['/blog/all-blogs']"
+                      >Blog
+                      <span class="sr-only">(current)</span>
+                    </a>
+                  </li>
+        </ul>
+    </div>
+    <div class="container-fluid">
+        <ul class="navbar-nav mr-auto hide">
+            <li class="nav-item hide">
+                <span
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="nav-link title"
+                >Contáctanos
+          </span>
+              </li>
+              <li class="nav-item">
+                  <span
+                    class="nav-link"
+                  >WhatsApp:
+                  <br/>
+                  <img
+                  src="../../../../../assets/banner_img/197580.svg"
+                  width="20px"
+                  height="20px" />
 
-      <span style="float: right;">
-        <i class="fa fa-globe"></i>
-        Website:
-        <a href="http://ikismail.github.io" target="blank">ikismail</a>
-      </span>
+                  +58 424-7117137
+
+                  <br/>
+                  <img
+                  src="../../../../../assets/banner_img/197575.svg"
+                  width="20px"
+                  height="20px" />
+                 
+                  +57 315-7005569
+                  </span>
+                </li>
+                <li class="nav-item">
+                    <span
+                      class="nav-link"
+                      >Correo: yakbrake@gmail.com
+                    </span>
+                  </li>
+        </ul>
     </div>
   </div>
   <!--/.Copyright-->
 </footer>
-<!--/.Footer-->

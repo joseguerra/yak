@@ -52,6 +52,13 @@ const routes: Routes = [
             (m) => m.EventModule
           ),
       },
+      {
+        path: "questions",
+        loadChildren: () =>
+          import("./views/pages/questions/questions.module").then(
+            (m) => m.QuestionsModule
+          ),
+      }
     ],
   },
   { path: "no-access", component: NoAccessComponent },

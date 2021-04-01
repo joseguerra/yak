@@ -45,7 +45,7 @@
         <div class="row" *ngIf="!loading">
           <!-- List of Products -->
 
-          <div class="col-md-4" *ngFor="let card of productList; let cardIndex = index">
+          <div class="col-md-4" *ngFor="let card of productList| paginate: { itemsPerPage: 25, currentPage: page }">
             <mdb-card class="my-1">
               <mdb-card-img [src]="card.blogImage" alt="Card image cap"></mdb-card-img>
               <mdb-card-body>
@@ -92,6 +92,8 @@
         <div class="mt-3 center">
           <pagination-controls
             (pageChange)="page = $event"
+            previousLabel="Anterior"
+            nextLabel="Siguiente"
           ></pagination-controls>
         </div>
       </div>

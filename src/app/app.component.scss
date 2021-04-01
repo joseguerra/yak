@@ -1,7 +1,5 @@
 :host {
-  main {
-    position: relative;
-  }
+
   .qlwapp-toggle {
     border-radius: 50px;
     margin-left: 10% !important;
@@ -33,4 +31,9 @@
 
 .padding-left {
   padding-left: 4px;
+}
+
+.html{
+  min-height:100%;
+   position:relative;
 }

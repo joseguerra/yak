@@ -26,7 +26,7 @@ export class IndexComponent implements OnInit {
       bannerImg: "./assets/banner_img/yak_3.jpg",
     },
     {
-      bannerImg: "./assets/banner_img/yak_7.png",
+      bannerImg: "./assets/banner_img/yak_7.jpg",
     }
   ];
   products: Product[];
@@ -81,7 +81,6 @@ export class IndexComponent implements OnInit {
     const x = this.storesService.getStores();
     x.snapshotChanges().subscribe(
       (product) => {
-        console.log(product);
         this.productList = [];
         product.forEach((element) => {
           const y = {
@@ -94,7 +93,6 @@ export class IndexComponent implements OnInit {
           })
         });
         this.loadStores = true;
-        console.log(this.productList);
 
       },
       (err) => {

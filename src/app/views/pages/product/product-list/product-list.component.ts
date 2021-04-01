@@ -52,7 +52,6 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       const id = params.id; // (+) converts string 'id' to a number
-      console.log(id);
       if (id) {
         this.getAllProductsById(id);
       } else {
@@ -74,9 +73,7 @@ export class ProductListComponent implements OnInit {
           this.product.productSKU + "/" + event.addedFiles[0].name + "/"
         );
         referencia.getDownloadURL().subscribe((data) => {
-          console.log(data);
           this.images.push(data);
-          console.log(this.images);
           this.loadingImage = false;
         });
       });
@@ -85,7 +82,6 @@ export class ProductListComponent implements OnInit {
   onRemove(event, i) {
     this.files.splice(this.files.indexOf(event), 1);
     this.images.splice(i,1);
-    console.log(this.images);
   }
 
   openEdit(product: Product) {
@@ -112,7 +108,6 @@ export class ProductListComponent implements OnInit {
     let key: string = JSON.stringify(this.product.$key);
     key = key.replace(/["']/g, "");
     delete this.product.$key;
-    console.log(this.images);
     product.images = this.images;
     this.productService
       .editProduct(key, product)
@@ -128,7 +123,6 @@ export class ProductListComponent implements OnInit {
     const x = this.productService.getProducts();
     x.snapshotChanges().subscribe(
       (product) => {
-        console.log(product);
         this.loading = false;
         this.productList = [];
         product.forEach((element) => {
@@ -138,8 +132,6 @@ export class ProductListComponent implements OnInit {
           } as Product;
           this.productList.push(y);
         });
-        console.log(this.productList);
-
       },
       (err) => {
         this.toastrService.error("Error while fetching Products", err);
@@ -163,14 +155,12 @@ export class ProductListComponent implements OnInit {
 
           products.push(y);
         });
-        console.log(products);
 
         this.productList = products.filter(
           (state) =>
             state.productName.toLowerCase().indexOf(id.toLowerCase()) != -1 ||  state.productDescription.toLowerCase().indexOf(id.toLowerCase()) != -1
         );
 
-        console.log(this.productList);
       },
       (err) => {
         this.toastrService.error("Error while fetching Products", err);
