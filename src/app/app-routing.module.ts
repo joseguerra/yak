@@ -58,6 +58,13 @@ const routes: Routes = [
           import("./views/pages/questions/questions.module").then(
             (m) => m.QuestionsModule
           ),
+      },
+      {
+        path: "terms",
+        loadChildren: () =>
+          import("./views/pages/terms/terms.module").then(
+            (m) => m.TermsModule
+          ),
       }
     ],
   },

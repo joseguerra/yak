@@ -20,6 +20,9 @@ export class AppComponent implements OnInit {
     router.events.subscribe((y: NavigationEnd) => {
       if(y instanceof NavigationEnd){
         fbq('track', 'PageView');
+        fbq('track', 'ViewContent', 
+        { content_name: 'Really Fast Running Shoes', content_category: 'Apparel & Accessories > Shoes', content_ids: ['1234'], content_type: 'product', value: 0.50, currency: 'USD' }
+        );
       }
     })
     const navEndEvents$ = this.router.events

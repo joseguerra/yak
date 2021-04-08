@@ -1,6 +1,6 @@
 import { Product } from "../../../../shared/models/product";
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { ActivatedRoute} from "@angular/router";
+import { ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import { ProductService } from "../../../../shared/services/product.service";
 import { ToastrService } from "src/app/shared/services/toastr.service";
 import {
@@ -9,7 +9,6 @@ import {
   NgxGalleryAnimation,
   NgxGalleryImageSize,
 } from "ngx-gallery-9";
-
 declare var $: any;
 declare let fbq:Function;
 @Component({
@@ -28,8 +27,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute, 
     public productService: ProductService, 
+    private router: Router,
     private toastrService: ToastrService){
-
     this.product = new Product();
   }
 
@@ -68,7 +67,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   setLang(val: number) {
     this.product.cartQuantity = val;
-    console.log(this.product);
   }
 
   getProductDetail(id: string) {
@@ -78,7 +76,13 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       (product) => {
         const y = { ...(product.payload.toJSON() as Product), $key: id };
         this.product = y;
-        console.log(this.product);
+        this.router.events.subscribe((y: NavigationEnd) => {
+          if(y instanceof NavigationEnd){
+            fbq('track', 'ViewContent', 
+            { content_name: this.product.productName, content_category: this.product.productCategory, content_ids: [this.product.$key], content_type: 'product', value: this.product.price_ve, currency: 'USD' }
+            );
+          }
+        })
         for (let i = 0; i < Object.values(this.product.images).length; i++) {
           this.galleryImages.push({
             small: this.product.images[i],
@@ -86,7 +90,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
             big: this.product.images[i],
           });
         }
-        console.log(this.galleryImages);
         for (let i = 0; i < this.product.productQuantity && i < 10; i++) {
           this.valueList.push(i + 1);
         }
